@@ -1,6 +1,6 @@
 package com.clibanez.cuscuzdiario.resources.exception;
 
-public class StandarError {
+public class StandardError {
 
     private long timestamp;
     private Integer status;
@@ -8,11 +8,11 @@ public class StandarError {
     private String message;
     private String path;
 
-    public StandarError(){
+    public StandardError(){
         super();
     }
 
-    public StandarError(long timestamp, Integer status, String error, String message, String path) {
+    public StandardError(long timestamp, Integer status, String error, String message, String path) {
         this.timestamp = timestamp;
         this.status = status;
         this.error = error;

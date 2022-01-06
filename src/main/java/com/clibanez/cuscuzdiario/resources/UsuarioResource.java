@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import com.clibanez.cuscuzdiario.domian.Usuario;
 import com.clibanez.cuscuzdiario.domian.dtos.UsuarioDTO;
 import com.clibanez.cuscuzdiario.services.UsuarioService;
@@ -44,13 +46,11 @@ public class UsuarioResource {
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioDTO> create(@RequestBody UsuarioDTO objDTO){
+    public ResponseEntity<UsuarioDTO> create(@Valid @RequestBody UsuarioDTO objDTO){
         Usuario newObj = service.create(objDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-
-
 
 
     @PutMapping
