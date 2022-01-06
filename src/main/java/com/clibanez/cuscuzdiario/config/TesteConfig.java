@@ -1,6 +1,8 @@
-package com.projeto.cuscuzdiario.config;
+package com.clibanez.cuscuzdiario.config;
 
-import com.projeto.cuscuzdiario.Services.DBService;
+
+
+import com.clibanez.cuscuzdiario.services.DBService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

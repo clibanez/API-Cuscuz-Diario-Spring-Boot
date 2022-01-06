@@ -1,7 +1,6 @@
-package com.projeto.cuscuzdiario.domian.dtos;
+package com.clibanez.cuscuzdiario.domian.dtos;
 
-
-import com.projeto.cuscuzdiario.domian.Usuario;
+import com.clibanez.cuscuzdiario.domian.Usuario;
 
 public class UsuarioDTO {
 

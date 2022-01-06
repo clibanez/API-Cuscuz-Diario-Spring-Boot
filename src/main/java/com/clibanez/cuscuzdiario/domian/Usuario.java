@@ -1,4 +1,4 @@
-package com.projeto.cuscuzdiario.domian;
+package com.clibanez.cuscuzdiario.domian;
 
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
-import com.projeto.cuscuzdiario.domian.dtos.UsuarioDTO;
+import com.clibanez.cuscuzdiario.domian.dtos.UsuarioDTO;
 
 import org.hibernate.validator.constraints.Length;
 

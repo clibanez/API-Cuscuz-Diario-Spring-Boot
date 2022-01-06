@@ -1,4 +1,4 @@
-package com.projeto.cuscuzdiario.domian;
+package com.clibanez.cuscuzdiario.domian;
 
 
 import java.time.LocalDate;

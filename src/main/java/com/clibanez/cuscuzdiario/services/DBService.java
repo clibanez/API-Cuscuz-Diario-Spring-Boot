@@ -1,13 +1,13 @@
-package com.projeto.cuscuzdiario.Services;
+package com.clibanez.cuscuzdiario.services;
 
 import java.util.Arrays;
 
-import com.projeto.cuscuzdiario.domian.Biblia;
-import com.projeto.cuscuzdiario.domian.Cuscuz;
-import com.projeto.cuscuzdiario.domian.Usuario;
-import com.projeto.cuscuzdiario.repository.BibliaRepository;
-import com.projeto.cuscuzdiario.repository.CuscuzRepository;
-import com.projeto.cuscuzdiario.repository.UsuarioRepository;
+import com.clibanez.cuscuzdiario.domian.Biblia;
+import com.clibanez.cuscuzdiario.domian.Cuscuz;
+import com.clibanez.cuscuzdiario.domian.Usuario;
+import com.clibanez.cuscuzdiario.repository.BibliaRepository;
+import com.clibanez.cuscuzdiario.repository.CuscuzRepository;
+import com.clibanez.cuscuzdiario.repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.projeto.cuscuzdiario;
+package com.clibanez.cuscuzdiario;
 
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

@@ -1,6 +1,8 @@
-package com.projeto.cuscuzdiario.repository;
+package com.clibanez.cuscuzdiario.repository;
 
-import com.projeto.cuscuzdiario.domian.Cuscuz;
+
+
+import com.clibanez.cuscuzdiario.domian.Cuscuz;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
