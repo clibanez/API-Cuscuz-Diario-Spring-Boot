@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.clibanez.cuscuzdiario.domian.Usuario;
+import com.clibanez.cuscuzdiario.domian.dtos.UsuarioDTO;
 import com.clibanez.cuscuzdiario.repository.UsuarioRepository;
 import com.clibanez.cuscuzdiario.services.exception.ObjectNotFoundException;
 
@@ -25,10 +26,11 @@ public class UsuarioService {
     public List<Usuario> findAll(){
         return repo.findAll();
     }
-    public Usuario save(Usuario usuario){
-        usuario.setId(null);
-        return repo.save(usuario);
-
+   
+    public Usuario create(UsuarioDTO objDTO){
+        objDTO.setId(null);
+        Usuario newObj = new Usuario(objDTO);
+        return repo.save(newObj);
     }
 
     public Usuario update(Usuario usuario) { 

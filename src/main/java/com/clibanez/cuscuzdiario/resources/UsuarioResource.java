@@ -1,5 +1,6 @@
 package com.clibanez.cuscuzdiario.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping(value = "/usuarios")
@@ -42,10 +44,13 @@ public class UsuarioResource {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> save(@RequestBody Usuario autor) {
-        Usuario obj = service.save(autor);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<UsuarioDTO> create(@RequestBody UsuarioDTO objDTO){
+        Usuario newObj = service.create(objDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
+
+
 
 
     @PutMapping

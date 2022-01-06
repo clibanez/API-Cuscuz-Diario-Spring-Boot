@@ -40,6 +40,14 @@ public class Usuario {
     private List<Cuscuz> cuscuz = new ArrayList<>();
 
     
+    public Usuario(UsuarioDTO obj) {
+        super();
+        this.id = obj.getId();
+        this.nome = obj.getNome();
+        this.senha = obj.getSenha();
+        this.email = obj.getEmail();
+    }
+
 
     public Usuario(){
 
@@ -56,16 +64,6 @@ public class Usuario {
         this.senha = senha;
         this.email = email;
     }
-
-    public Usuario(UsuarioDTO obj) {
-        super();
-        this.id = obj.getId();
-        this.nome = obj.getNome();
-        this.senha = obj.getSenha();
-        this.email = obj.getEmail();
-    }
-
-
 
 
     public Integer getId() {
