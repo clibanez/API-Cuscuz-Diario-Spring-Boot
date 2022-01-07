@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.clibanez.cuscuzdiario.domian.dtos.BibliaDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -49,6 +50,14 @@ public class Biblia {
         this.capitulo = capitulo;
         this.versiculo = versiculo;
         this.versao = versao;
+    }
+
+    public Biblia(BibliaDTO obj){
+        this.id = obj.getId();
+        this.livro = obj.getLivro();
+        this.capitulo = obj.getCapitulo();
+        this.versiculo = obj.getVersiculo();
+        this.versao = obj.getVersao();
     }
 
     @Override

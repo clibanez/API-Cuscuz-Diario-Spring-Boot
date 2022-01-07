@@ -24,6 +24,7 @@ public class BibliaDTO {
 
     public BibliaDTO(Biblia obj){
         super();
+        this.id = obj.getId();
         this.livro = obj.getLivro();
         this.capitulo = obj.getCapitulo();
         this.versiculo = obj.getVersiculo();

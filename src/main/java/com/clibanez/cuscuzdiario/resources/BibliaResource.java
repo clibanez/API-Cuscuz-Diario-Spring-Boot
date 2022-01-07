@@ -1,8 +1,13 @@
 package com.clibanez.cuscuzdiario.resources;
 
+import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import com.clibanez.cuscuzdiario.domian.Biblia;
+import com.clibanez.cuscuzdiario.domian.dtos.BibliaDTO;
 import com.clibanez.cuscuzdiario.services.BibliaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping(value = "/biblias")
@@ -27,34 +33,38 @@ public class BibliaResource {
     private BibliaService service;
     
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Biblia> findById(@PathVariable Integer id){
-        Biblia biblia = service.findById(id);
-        return ResponseEntity.ok().body(biblia);
+    public ResponseEntity<BibliaDTO> findById(@PathVariable Integer id){
+        Biblia obj = service.findById(id);
+        return ResponseEntity.ok().body(new BibliaDTO(obj));
     }
 
     @GetMapping
-    public ResponseEntity<List<Biblia>> findAll(){
-        List<Biblia> biblia = service.findAll();
-        return ResponseEntity.ok().body(biblia);
+    public ResponseEntity<List<BibliaDTO>> findAll(){
+        List<Biblia> list = service.findAll();
+        List<BibliaDTO> listDTO = list.stream().map(obj -> new BibliaDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
     }
-
 
     @PostMapping
-    public ResponseEntity<Biblia> save(@RequestBody Biblia biblia) {
-        Biblia obj = service.save(biblia);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<BibliaDTO> create(@Valid @RequestBody BibliaDTO objDTO){
+        Biblia newObj = service.create(objDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping
-    public ResponseEntity<Biblia> update(@RequestBody Biblia biblia){
-        Biblia obj = service.update(biblia);
-        return ResponseEntity.ok().body(obj);
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<BibliaDTO> update(@PathVariable Integer id, @Valid @RequestBody BibliaDTO objDTO){
+        Biblia obj = service.update(id, objDTO);
+        return ResponseEntity.ok().body(new BibliaDTO(obj));
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
+    public ResponseEntity<BibliaDTO> delete(@PathVariable Integer id){
         service.delete(id);
         return ResponseEntity.noContent().build();
+
     }
+
     
 }

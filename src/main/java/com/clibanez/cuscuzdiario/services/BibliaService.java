@@ -3,7 +3,10 @@ package com.clibanez.cuscuzdiario.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.clibanez.cuscuzdiario.domian.Biblia;
+import com.clibanez.cuscuzdiario.domian.dtos.BibliaDTO;
 import com.clibanez.cuscuzdiario.repository.BibliaRepository;
 import com.clibanez.cuscuzdiario.services.exception.ObjectNotFoundException;
 
@@ -19,35 +22,32 @@ public class BibliaService {
     public Biblia findById(Integer id) {
         Optional<Biblia> biblia = repo.findById(id);
         return biblia.orElseThrow(() -> new ObjectNotFoundException
-        ("Objeto não encontrado Id " + id + "Tipo " + Biblia.class.getName()));
+        ("Objeto não encontrado Id " + id));
     }
 
     public List<Biblia> findAll(){
         return repo.findAll();
     }
-
-    public Biblia save(Biblia biblia){
-        biblia.setId(null);
-        return repo.save(biblia);
-
+   
+    public Biblia create(BibliaDTO objDTO){
+        objDTO.setId(null);
+        Biblia newObj = new Biblia(objDTO);
+        return repo.save(newObj);
     }
 
-    public Biblia update(Biblia biblia){
-        Biblia newBiblia = new Biblia();
-        updateBiblia(biblia, newBiblia);
-        return repo.save(biblia);
-    }
+    public Biblia update(Integer id,@Valid BibliaDTO objDTO) { 
+       objDTO.setId(id);
+       Biblia oldObj = findById(id);
+        oldObj = new Biblia(objDTO);
+        return repo.save(oldObj);
 
-    private void updateBiblia(Biblia oldBiblia, Biblia newBiblia) {
-        newBiblia.setLivro(oldBiblia.getLivro());
-        newBiblia.setVersiculo(oldBiblia.getCapitulo());
-        newBiblia.setVersiculo(oldBiblia.getVersiculo());
-        newBiblia.setVersao(oldBiblia.getVersao());
-        
     }
 
     public void delete(Integer id){
+        Biblia obj = findById(id);
         repo.deleteById(id);
+        
+
     }
 
 
