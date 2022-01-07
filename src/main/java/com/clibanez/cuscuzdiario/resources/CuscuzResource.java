@@ -1,9 +1,14 @@
 package com.clibanez.cuscuzdiario.resources;
 
 
+import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import com.clibanez.cuscuzdiario.domian.Cuscuz;
+import com.clibanez.cuscuzdiario.domian.dtos.CuscuzDTO;
 import com.clibanez.cuscuzdiario.services.CuscuzService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping(value = "/cuscuz")
@@ -27,34 +33,37 @@ public class CuscuzResource {
     private CuscuzService service;
     
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Cuscuz> findById(@PathVariable Integer id){
-        Cuscuz cuscuz = service.findById(id);
-        return ResponseEntity.ok().body(cuscuz);
+    public ResponseEntity<CuscuzDTO> findById(@PathVariable Integer id){
+        Cuscuz obj = service.findById(id);
+        return ResponseEntity.ok().body(new CuscuzDTO(obj));
     }
 
     @GetMapping
-    public ResponseEntity<List<Cuscuz>> findAll(){
-        List<Cuscuz> cuscuz = service.findAll();
-        return ResponseEntity.ok().body(cuscuz);
+    public ResponseEntity<List<CuscuzDTO>> findAll(){
+        List<Cuscuz> list = service.findAll();
+        List<CuscuzDTO> listDTO = list.stream().map(obj -> new CuscuzDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
     }
-
 
     @PostMapping
-    public ResponseEntity<Cuscuz> save(@RequestBody Cuscuz cuscuz) {
-        Cuscuz obj = service.save(cuscuz);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<CuscuzDTO> create(@Valid @RequestBody CuscuzDTO objDTO){
+        Cuscuz newObj = service.create(objDTO);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping
-    public ResponseEntity<Cuscuz> update(@RequestBody Cuscuz cuscuz){
-        Cuscuz obj = service.update(cuscuz);
-        return ResponseEntity.ok().body(obj);
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CuscuzDTO> update(@PathVariable Integer id, @Valid @RequestBody CuscuzDTO objDTO){
+        Cuscuz obj = service.update(id, objDTO);
+        return ResponseEntity.ok().body(new CuscuzDTO(obj));
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
+    public ResponseEntity<CuscuzDTO> delete(@PathVariable Integer id){
         service.delete(id);
         return ResponseEntity.noContent().build();
+
     }
 
 

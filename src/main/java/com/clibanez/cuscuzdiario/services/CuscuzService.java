@@ -3,7 +3,10 @@ package com.clibanez.cuscuzdiario.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.clibanez.cuscuzdiario.domian.Cuscuz;
+import com.clibanez.cuscuzdiario.domian.dtos.CuscuzDTO;
 import com.clibanez.cuscuzdiario.repository.CuscuzRepository;
 import com.clibanez.cuscuzdiario.services.exception.ObjectNotFoundException;
 
@@ -19,33 +22,33 @@ public class CuscuzService {
     public Cuscuz findById(Integer id) {
         Optional<Cuscuz> cuscuz = repo.findById(id);
         return cuscuz.orElseThrow(() -> new ObjectNotFoundException
-        ("Objeto não encontrado Id " + id + "Tipo " + Cuscuz.class.getName()));
+        ("Objeto não encontrado Id " + id));
     }
 
     public List<Cuscuz> findAll(){
         return repo.findAll();
     }
-
-    public Cuscuz save(Cuscuz cuscuz){
-        cuscuz.setId(null);
-        return repo.save(cuscuz);
-
+   
+    public Cuscuz create(CuscuzDTO objDTO){
+        objDTO.setId(null);
+        Cuscuz newObj = new Cuscuz(objDTO);
+        return repo.save(newObj);
     }
 
+    public Cuscuz update(Integer id,@Valid CuscuzDTO objDTO) { 
+       objDTO.setId(id);
+       Cuscuz oldObj = findById(id);
+        oldObj = new Cuscuz(objDTO);
+        return repo.save(oldObj);
 
-    public Cuscuz update(Cuscuz cuscuz){
-        Cuscuz newCuscuz = new Cuscuz();
-        updateCuscuz(cuscuz, newCuscuz);
-        return repo.save(cuscuz);
-    }
-
-    private void updateCuscuz(Cuscuz oldCuscuz, Cuscuz newCuscuz) {
-        newCuscuz.setTitulo(oldCuscuz.getTitulo());
-        newCuscuz.setTexto(oldCuscuz.getTexto());
     }
 
     public void delete(Integer id){
+        Cuscuz obj = findById(id);
         repo.deleteById(id);
+        
+        
+
     }
 
 

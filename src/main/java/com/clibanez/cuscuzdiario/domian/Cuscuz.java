@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.clibanez.cuscuzdiario.domian.dtos.CuscuzDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -59,6 +60,14 @@ public Cuscuz(Integer id, String titulo, String texto, Usuario usuario) {
     this.titulo = titulo;
     this.texto = texto;
     this.usuario = usuario;
+}
+
+public Cuscuz(CuscuzDTO obj){
+    super();
+    this.id = obj.getId();
+    this.titulo = obj.getTitulo();
+    this.texto = obj.getTexto();
+    this.dataCriacao = obj.getDataCriacao();
 }
 
 
