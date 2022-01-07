@@ -59,12 +59,13 @@ public class UsuarioResource {
         return ResponseEntity.ok().body(new UsuarioDTO(obj));
     }
 
-
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
+    public ResponseEntity<UsuarioDTO> delete(@PathVariable Integer id){
         service.delete(id);
         return ResponseEntity.noContent().build();
+
     }
+
 
 
 

@@ -11,6 +11,7 @@ import com.clibanez.cuscuzdiario.repository.UsuarioRepository;
 import com.clibanez.cuscuzdiario.services.exception.ObjectNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -43,19 +44,11 @@ public class UsuarioService {
 
     }
 
-    public void deleteById(Integer id){
-        repo.deleteById(id);
-    }
-
-    private void updateUsuario(Usuario oldUsuario, Usuario newUsuario) {
-        newUsuario.setNome(oldUsuario.getNome());
-        newUsuario.setSenha(oldUsuario.getSenha());
-        newUsuario.setEmail(oldUsuario.getEmail());
-
-    }
-
     public void delete(Integer id){
+        Usuario obj = findById(id);
         repo.deleteById(id);
+        
+
     }
 
 
