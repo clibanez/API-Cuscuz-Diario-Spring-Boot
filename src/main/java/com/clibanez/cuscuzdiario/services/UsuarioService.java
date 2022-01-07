@@ -3,6 +3,8 @@ package com.clibanez.cuscuzdiario.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.clibanez.cuscuzdiario.domian.Usuario;
 import com.clibanez.cuscuzdiario.domian.dtos.UsuarioDTO;
 import com.clibanez.cuscuzdiario.repository.UsuarioRepository;
@@ -33,10 +35,12 @@ public class UsuarioService {
         return repo.save(newObj);
     }
 
-    public Usuario update(Usuario usuario) { 
-        Usuario newUsuario = new Usuario();
-        updateUsuario(usuario, newUsuario);
-        return repo.save(usuario);
+    public Usuario update(Integer id,@Valid UsuarioDTO objDTO) { 
+       objDTO.setId(id);
+       Usuario oldObj = findById(id);
+        oldObj = new Usuario(objDTO);
+        return repo.save(oldObj);
+
     }
 
     public void deleteById(Integer id){
