@@ -11,7 +11,6 @@ import com.clibanez.cuscuzdiario.repository.UsuarioRepository;
 import com.clibanez.cuscuzdiario.services.exception.ObjectNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -51,9 +50,5 @@ public class UsuarioService {
 
     }
 
-
-
-
-   
    
 }
