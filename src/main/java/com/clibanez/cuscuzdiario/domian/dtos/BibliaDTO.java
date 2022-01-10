@@ -4,6 +4,12 @@ import javax.validation.constraints.NotNull;
 
 import com.clibanez.cuscuzdiario.domian.Biblia;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Setter@Getter
 public class BibliaDTO {
 
    
@@ -18,10 +24,6 @@ public class BibliaDTO {
     @NotNull(message = "O campo VERSAO é requerido")
     private String versao;
 
-    public BibliaDTO(){
-        super();
-    }
-
     public BibliaDTO(Biblia obj){
         super();
         this.id = obj.getId();
@@ -31,46 +33,4 @@ public class BibliaDTO {
         this.versao = obj.getVersao();
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getLivro() {
-        return livro;
-    }
-
-    public void setLivro(String livro) {
-        this.livro = livro;
-    }
-
-    public String getCapitulo() {
-        return capitulo;
-    }
-
-    public void setCapitulo(String capitulo) {
-        this.capitulo = capitulo;
-    }
-
-    public String getVersiculo() {
-        return versiculo;
-    }
-
-    public void setVersiculo(String versiculo) {
-        this.versiculo = versiculo;
-    }
-
-    public String getVersao() {
-        return versao;
-    }
-
-    public void setVersao(String versao) {
-        this.versao = versao;
-    }
-
-    
-    
 }

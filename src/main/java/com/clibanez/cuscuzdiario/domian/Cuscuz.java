@@ -18,7 +18,14 @@ import com.clibanez.cuscuzdiario.domian.dtos.CuscuzDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor
+@EqualsAndHashCode(of = {"id"})
+@Setter@Getter
 @Entity
 public class Cuscuz {
 
@@ -46,15 +53,6 @@ public class Cuscuz {
     private Usuario usuario;
 
 
-
- public Cuscuz(){
-     super();
-
- }
-
- 
-
-
 public Cuscuz(Integer id, String titulo, String texto, Usuario usuario) {
     this.id = id;
     this.titulo = titulo;
@@ -70,113 +68,4 @@ public Cuscuz(CuscuzDTO obj){
     this.dataCriacao = obj.getDataCriacao();
 }
 
-
-
-
-public Integer getId() {
-    return id;
-}
-
-
-
-
-public void setId(Integer id) {
-    this.id = id;
-}
-
-
-
-
-public String getTitulo() {
-    return titulo;
-}
-
-
-
-
-public void setTitulo(String titulo) {
-    this.titulo = titulo;
-}
-
-
-
-
-public String getTexto() {
-    return texto;
-}
-
-
-
-
-public void setTexto(String texto) {
-    this.texto = texto;
-}
-
-
-
-
-public LocalDate getDataCriacao() {
-    return dataCriacao;
-}
-
-
-
-
-public void setDataCriacao(LocalDate dataCriacao) {
-    this.dataCriacao = dataCriacao;
-}
-
-
-public List<Biblia> getBlibias() {
-    return blibias;
-}
-
-
-
-
-public void setBlibias(List<Biblia> blibias) {
-    this.blibias = blibias;
-}
-
-
-
-
-@Override
-public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((id == null) ? 0 : id.hashCode());
-    return result;
-}
-
-
-
-
-@Override
-public boolean equals(Object obj) {
-    if (this == obj)
-        return true;
-    if (obj == null)
-        return false;
-    if (getClass() != obj.getClass())
-        return false;
-    Cuscuz other = (Cuscuz) obj;
-    if (id == null) {
-        if (other.id != null)
-            return false;
-    } else if (!id.equals(other.id))
-        return false;
-    return true;
-}
-
-
-
-
-
-
- 
-
-
-
- 
 }
