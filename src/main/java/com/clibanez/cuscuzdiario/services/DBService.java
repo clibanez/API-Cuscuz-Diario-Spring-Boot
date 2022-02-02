@@ -29,7 +29,7 @@ public class DBService {
 
     public void instanciaDB() {
 
-        Usuario usu1 = new Usuario(null, "Clibanez", "!DDFF", "Cliabenz@gmail.com");
+        Usuario usu1 = new Usuario(null, "Clibanez", "123", "test@gmail.com");
         Usuario usu2 = new Usuario(null, "Matheus", "!D344FF", "Matheus@gmail.com");
 
         Cuscuz cus1 = new Cuscuz(null, "Gênesis", "A palavra", usu1);

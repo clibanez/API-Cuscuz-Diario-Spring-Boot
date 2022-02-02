@@ -11,6 +11,7 @@ import com.clibanez.cuscuzdiario.repository.UsuarioRepository;
 import com.clibanez.cuscuzdiario.services.exception.ObjectNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,10 +32,12 @@ public class UsuarioService {
    
     public Usuario create(UsuarioDTO objDTO){
         objDTO.setId(null);
+        validaPorEmail(objDTO);
         Usuario newObj = new Usuario(objDTO);
         return repo.save(newObj);
     }
 
+    
     public Usuario update(Integer id,@Valid UsuarioDTO objDTO) { 
        objDTO.setId(id);
        Usuario oldObj = findById(id);
@@ -49,6 +52,16 @@ public class UsuarioService {
         
 
     }
+
+    private void validaPorEmail(UsuarioDTO objDTO) {
+        Optional<Usuario> obj = repo.findByEmail(objDTO.getEmail());
+        if(obj.isPresent() && obj.get().getId() != objDTO.getId()){
+            throw new DataIntegrityViolationException("E-mail já cadastrado no sistema!");
+            
+        }
+
+    }
+
 
    
 }

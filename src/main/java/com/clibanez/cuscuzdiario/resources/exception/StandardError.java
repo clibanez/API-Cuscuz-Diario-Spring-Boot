@@ -1,6 +1,9 @@
 package com.clibanez.cuscuzdiario.resources.exception;
 
-public class StandardError {
+import java.io.Serializable;
+
+public class StandardError implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     private long timestamp;
     private Integer status;
