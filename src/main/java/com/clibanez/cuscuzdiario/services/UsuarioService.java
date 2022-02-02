@@ -12,6 +12,7 @@ import com.clibanez.cuscuzdiario.services.exception.ObjectNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +20,9 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository repo;
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     public Usuario findById(Integer id) {
         Optional<Usuario> usuario = repo.findById(id);
@@ -32,6 +36,7 @@ public class UsuarioService {
    
     public Usuario create(UsuarioDTO objDTO){
         objDTO.setId(null);
+        objDTO.setSenha(encoder.encode(objDTO.getSenha()));
         validaPorEmail(objDTO);
         Usuario newObj = new Usuario(objDTO);
         return repo.save(newObj);
@@ -40,6 +45,7 @@ public class UsuarioService {
     
     public Usuario update(Integer id,@Valid UsuarioDTO objDTO) { 
        objDTO.setId(id);
+       validaPorEmail(objDTO);
        Usuario oldObj = findById(id);
         oldObj = new Usuario(objDTO);
         return repo.save(oldObj);

@@ -10,6 +10,7 @@ import com.clibanez.cuscuzdiario.repository.CuscuzRepository;
 import com.clibanez.cuscuzdiario.repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,12 +26,16 @@ public class DBService {
     @Autowired
     private BibliaRepository bibliaRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder encoder;
+
+
 
 
     public void instanciaDB() {
 
-        Usuario usu1 = new Usuario(null, "Clibanez", "123", "test@gmail.com");
-        Usuario usu2 = new Usuario(null, "Matheus", "!D344FF", "Matheus@gmail.com");
+        Usuario usu1 = new Usuario(null, "Clibanez", encoder.encode("123"), "test@gmail.com");
+        Usuario usu2 = new Usuario(null, "Matheus", encoder.encode("123"), "test1@gmail.com");
 
         Cuscuz cus1 = new Cuscuz(null, "Gênesis", "A palavra", usu1);
         Cuscuz cus2 = new Cuscuz(null, "João", "Discipulo", usu2);

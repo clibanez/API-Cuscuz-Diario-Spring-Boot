@@ -16,7 +16,7 @@ public class CuscuzDiarioApplication {
 		SpringApplication.run(CuscuzDiarioApplication.class, args);
 
 	}
-
+/*
 	@Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -30,6 +30,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
     }
 }
-
+*/
 
 }
