@@ -56,10 +56,11 @@ protected void successfulAuthentication(HttpServletRequest request, HttpServletR
     
     String username = ((UserSS) authResult.getPrincipal()).getUsername();
     String token = jwtUtil.generateToken(username);
-    response.setHeader("access-control-exposa-headers", "Authorization");
+    response.setHeader("access-control-expose-headers", "Authorization");
     response.setHeader("Authorization", "Bearer " + token);
     
 }
+
 
 @Override
 protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
@@ -69,15 +70,15 @@ protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServle
     response.setContentType("application/json");
     response.getWriter().append(json());
 }
-private CharSequence json(){
+
+private CharSequence json() {
     long date = new Date().getTime();
     return "{"
-            + "\"timestamp\": " + date + ", "
-            + "\"status\":  401,"
-            + "\"error\": \"Nâo autorizado\", "
+            + "\"timestamp\": " + date + ", " 
+            + "\"status\": 401, "
+            + "\"error\": \"Não autorizado\", "
             + "\"message\": \"Email ou senha inválidos\", "
             + "\"path\": \"/login\"}";
 }
-
 
 }
