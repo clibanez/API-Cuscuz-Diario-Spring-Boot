@@ -44,9 +44,11 @@ public class DBService {
         Biblia bib2 = new Biblia(null, "Daniel", "cap 18", "ver 33", "Plenitude");
 
         cus1.getBlibias().addAll(Arrays.asList(bib1,bib2));
+        usu1.getCuscuz().addAll(Arrays.asList(cus1,cus2));
+        
         
 
-        bib1.getCuscuzz().addAll(Arrays.asList(cus2));
+       bib1.getCuscuzz().addAll(Arrays.asList(cus2));
 
 
 
