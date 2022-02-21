@@ -37,14 +37,15 @@ public class DBService {
         Usuario usu1 = new Usuario(null, "Clibanez", encoder.encode("123"), "test@gmail.com");
         Usuario usu2 = new Usuario(null, "Matheus", encoder.encode("123"), "test1@gmail.com");
 
-        Cuscuz cus1 = new Cuscuz(null, "Gênesis", "A palavra", usu1);
-        Cuscuz cus2 = new Cuscuz(null, "João", "Discipulo", usu2);
+        Cuscuz cus1 = new Cuscuz(null, "Pr. Davi Cuscuz Diário Bom dia!!", "Como o Cordeiro de {Somos todos teólogos}", usu1);
+        Cuscuz cus2 = new Cuscuz(null, "Pr. Davi Cuscuz Diário Bom dia!!!", "Assim feria o teu se", usu2);
+        Cuscuz cus3 = new Cuscuz(null, "Pr. Davi Cuscuz Diário Bom dia!", "ARREPENDEI-VOZ! O povo", usu1);
 
-        Biblia bib1 = new Biblia(null, "Salmo", "cap 1", "ver 3", "Genebra");
-        Biblia bib2 = new Biblia(null, "Daniel", "cap 18", "ver 33", "Plenitude");
+        Biblia bib1 = new Biblia(null, "Provérbios", "cap 30", "ver 17", "“Os olhos de quem zomba do pai ou de quem despreza a obediência à sua mãe,corvos no ribeiro os arranca.”");
+        Biblia bib2 = new Biblia(null, "Provérbios", "cap 6", "ver 6", "“Vai ter com a formiga, ó preguiçoso; olha para os seus caminhos e sê sábio.”");
 
         cus1.getBlibias().addAll(Arrays.asList(bib1,bib2));
-        usu1.getCuscuz().addAll(Arrays.asList(cus1,cus2));
+        usu1.getCuscuz().addAll(Arrays.asList(cus1,cus2, cus3));
         
         
 
