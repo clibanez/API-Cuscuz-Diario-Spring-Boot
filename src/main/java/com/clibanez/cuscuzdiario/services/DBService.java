@@ -39,7 +39,7 @@ public class DBService {
 
         Cuscuz cus1 = new Cuscuz(null, "Pr. Davi Cuscuz Diário Bom dia!!", "Como o Cordeiro de {Somos todos teólogos}", usu1);
         Cuscuz cus2 = new Cuscuz(null, "Pr. Davi Cuscuz Diário Bom dia!!!", "Assim feria o teu se", usu2);
-        Cuscuz cus3 = new Cuscuz(null, "Pr. Davi Cuscuz Diário Bom dia!", "ARREPENDEI-VOZ! O povo", usu1);
+        Cuscuz cus3 = new Cuscuz(null, "Pr. Davi Cuscuz Diário Bom dia!", "ARREPENDEI-VOZ...! O povo", usu1);
 
         Biblia bib1 = new Biblia(null, "Provérbios", "cap 30", "ver 17", "“Os olhos de quem zomba do pai ou de quem despreza a obediência à sua mãe,corvos no ribeiro os arranca.”");
         Biblia bib2 = new Biblia(null, "Provérbios", "cap 6", "ver 6", "“Vai ter com a formiga, ó preguiçoso; olha para os seus caminhos e sê sábio.”");
